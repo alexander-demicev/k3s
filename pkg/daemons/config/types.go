@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/k3s-io/api/pkg/generated/controllers/k3s.cattle.io"
 	"github.com/k3s-io/kine/pkg/endpoint"
@@ -247,6 +248,7 @@ type Control struct {
 	EtcdSnapshotReconcile    metav1.Duration `json:"-"`
 	EtcdSnapshotRetention    int             `json:"-"`
 	EtcdSnapshotCompress     bool            `json:"-"`
+	EtcdStatusTimeout        time.Duration   `json:"-"`
 	EtcdListFormat           string          `json:"-"`
 	EtcdS3                   *EtcdS3         `json:"-"`
 	ServerNodeName           string

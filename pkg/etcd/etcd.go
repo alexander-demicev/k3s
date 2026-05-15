@@ -1463,7 +1463,11 @@ func (e *ETCD) status(ctx context.Context) (*clientv3.StatusResponse, error) {
 		return nil, errors.New("etcd client was nil")
 	}
 
-	ctx, cancel := context.WithTimeout(ctx, statusTimeout)
+	timeout := e.config.EtcdStatusTimeout
+	if timeout <= 0 {
+		timeout = statusTimeout
+	}
+	ctx, cancel := context.WithTimeout(ctx, timeout)
 	defer cancel()
 
 	endpoints := getEndpoints(e.config)

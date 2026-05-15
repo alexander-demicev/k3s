@@ -183,6 +183,7 @@ func run(app *cli.Context, cfg *cmds.Server, leaderControllers server.CustomCont
 	serverConfig.ControlConfig.EncryptProvider = cfg.EncryptProvider
 	serverConfig.ControlConfig.EtcdExposeMetrics = cfg.EtcdExposeMetrics
 	serverConfig.ControlConfig.EtcdDisableSnapshots = cfg.EtcdDisableSnapshots
+	serverConfig.ControlConfig.EtcdStatusTimeout = cfg.EtcdStatusTimeout
 	serverConfig.ControlConfig.SupervisorMetrics = cfg.SupervisorMetrics
 	serverConfig.ControlConfig.VLevel = cmds.LogConfig.VLevel
 	serverConfig.ControlConfig.VModule = cmds.LogConfig.VModule

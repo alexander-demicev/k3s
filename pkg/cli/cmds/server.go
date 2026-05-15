@@ -96,6 +96,7 @@ type Server struct {
 	EtcdSnapshotReconcile    time.Duration
 	EtcdSnapshotRetention    int
 	EtcdSnapshotCompress     bool
+	EtcdStatusTimeout        time.Duration
 	EtcdListFormat           string
 	EtcdS3                   bool
 	EtcdS3Endpoint           string
@@ -420,6 +421,12 @@ var ServerFlags = []cli.Flag{
 		Name:        "etcd-snapshot-compress",
 		Usage:       "(db) Compress etcd snapshot",
 		Destination: &ServerConfig.EtcdSnapshotCompress,
+	},
+	&cli.DurationFlag{
+		Name:        "etcd-status-timeout",
+		Usage:       "(db) Timeout for etcd status checks during apiserver readiness probing. Raise for datastores >5GB.",
+		Destination: &ServerConfig.EtcdStatusTimeout,
+		Value:       30 * time.Second,
 	},
 	&cli.BoolFlag{
 		Name:        "etcd-s3",
